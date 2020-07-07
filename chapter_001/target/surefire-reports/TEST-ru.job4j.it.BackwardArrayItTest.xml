@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="3" failures="0" name="ru.job4j.it.BackwardArrayItTest" time="0.01" errors="0" skipped="0">
+<testsuite tests="3" failures="0" name="ru.job4j.it.BackwardArrayItTest" time="0.029" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="java.vm.version" value="14.0.1+7"/>
@@ -62,7 +62,7 @@
     <property name="sun.stdout.encoding" value="cp866"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="ru.job4j.it.BackwardArrayItTest" name="whenMultiCallhasNextThenTrue" time="0.01"/>
+  <testcase classname="ru.job4j.it.BackwardArrayItTest" name="whenMultiCallhasNextThenTrue" time="0.029"/>
   <testcase classname="ru.job4j.it.BackwardArrayItTest" name="whenReadSequence" time="0"/>
   <testcase classname="ru.job4j.it.BackwardArrayItTest" name="whenNextFromEmpty" time="0"/>
 </testsuite>
