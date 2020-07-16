@@ -16,7 +16,7 @@ after_success:
 notifications:
   email:
     recipients:
-      -pshulepov@gmail.com
+      -ifs3112@gmail.com
     on_success: never # default: change
     on_failure: never # default: always
 
