@@ -48,8 +48,6 @@ public class SimpleArray<T> implements Iterable {
         arr.add(5);
         arr.set(0, 2352);
         arr.remove(1);
-        arr.remove(11);
-        arr.set(11, 7);
 
         for (Object i : arr) {
             System.out.println(i);
@@ -66,7 +64,7 @@ public class SimpleArray<T> implements Iterable {
 
         @Override
         public boolean hasNext() {
-            return model[point] != null;
+            return point < count;
         }
 
         @Override
