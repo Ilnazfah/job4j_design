@@ -26,9 +26,10 @@ public class SimpleArray<T> implements Iterable {
         int count = 0;
         for (int i = 0; i < this.model.length; i++) {
             if (i == index) {
+                this.count--;
                 continue;
             }
-            this.model[count] = this.model[i];
+            System.arraycopy(this.model, i, this.model, count, 1);
             count++;
         }
     }
@@ -41,11 +42,11 @@ public class SimpleArray<T> implements Iterable {
     public static void main(String[] args) {
         SimpleArray<Integer> arr = new SimpleArray<>(10);
 
+        arr.add(0);
         arr.add(1);
         arr.add(2);
         arr.add(3);
         arr.add(4);
-        arr.add(5);
         arr.set(0, 2352);
         arr.remove(1);
 
