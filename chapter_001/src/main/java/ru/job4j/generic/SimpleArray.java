@@ -23,15 +23,8 @@ public class SimpleArray<T> implements Iterable {
 
     public void remove(int index) {
         Objects.checkIndex(index, count);
-        int count = 0;
-        for (int i = 0; i < this.model.length; i++) {
-            if (i == index) {
-                this.count--;
-                continue;
-            }
-            System.arraycopy(this.model, i, this.model, count, 1);
-            count++;
-        }
+        System.arraycopy(this.model, index + 1, this.model, index, count - index);
+        model[count--] = null;
     }
 
     public T get(int index) {
