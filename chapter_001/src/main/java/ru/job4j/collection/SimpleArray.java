@@ -26,18 +26,20 @@ public class SimpleArray<T> implements Iterable<T> {
     }
 
     public void add(T model) {
+        checkContainer();
+        container[count++] = model;
+        modCount++;
+    }
+
+    private void checkContainer() {
         Object[] temp = null;
         if (count > container.length - 1) {
             capacity *= 2;
             temp = new Object[capacity];
             System.arraycopy(container, 0, temp, 0, count);
             container = temp;
-            container[count++] = model;
             modCount++;
-        } else {
-            container[count++] = model;
         }
-        modCount++;
     }
 
     @Override
