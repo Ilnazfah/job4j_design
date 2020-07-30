@@ -1,4 +1,7 @@
 ru\job4j\it\EvenIteratorTest.class
 ru\job4j\it\MatrixItTest.class
 ru\job4j\it\BackwardArrayItTest.class
+ru\job4j\generic\StoreTest.class
+ru\job4j\generic\SimpleArrayTest.class
+ru\job4j\collection\SimpleArrayTest.class
 ru\job4j\it\FlatMapTest.class
