@@ -3,48 +3,60 @@ package ru.job4j.collection;
 import java.util.*;
 
 public class SimpleLinkedList<E> implements Iterable<E> {
-    private int modCount = 0;
     private int size = 0;
+    private int modCount = 0;
     private Node<E> first;
     private Node<E> last;
 
     public void add(E value) {
-        if (first == null) {
-            last = new Node<>(first, value, null);
+        Node<E> last = this.last;
+        Node<E> node = new Node<>(value, last, null);
+        this.last = node;
+        if (last == null) {
+            this.first = node;
+        } else {
+            last.next = node;
         }
-        //first = new Node<>();
         size++;
         modCount++;
     }
 
     public E get(int index) {
         Objects.checkIndex(index, size);
-        return null;
-    }
-
-    public int size() {
-        return this.size;
-    }
-
-    private class Node<E> {
-        private E currEl;
-        private Node<E> nextEl;
-        private Node<E> lastEl;
-
-        public Node(Node<E> lastEl, E currEl, Node<E> nextEl) {
-            this.currEl = currEl;
-            this.nextEl = nextEl;
-            this.lastEl = lastEl;
+        Node<E> n;
+        if (index < (size / 2)) {
+            n = first;
+            for (int i = 0; i < index; i++) {
+                n = n.next;
+            }
+        } else {
+            n = last;
+            for (int i = size - 1; i > index; i--) {
+                n = n.next;
+            }
         }
+        return n.node;
     }
 
-    public class It implements Iterator<E> {
-        private int point = 0;
-        private int expectedModCount = modCount;
+    @Override
+    public Iterator<E> iterator() {
+        return new It();
+    }
+
+    private class It implements Iterator<E> {
+        private Node<E> node = first;
+        private int expectedModCount = 0;
+
+        {
+            expectedModCount = modCount;
+        }
 
         @Override
         public boolean hasNext() {
-            return false;
+            if (expectedModCount != modCount) {
+                throw new ConcurrentModificationException();
+            }
+            return node != null;
         }
 
         @Override
@@ -52,15 +64,21 @@ public class SimpleLinkedList<E> implements Iterable<E> {
             if (!hasNext()) {
                 throw new NoSuchElementException();
             }
-            if (expectedModCount != modCount) {
-                throw new ConcurrentModificationException();
-            }
-            return null;
+            E value = node.node;
+            node = node.next;
+            return value;
         }
     }
 
-    @Override
-    public Iterator<E> iterator() {
-        return new It();
+    private static class Node<T> {
+        private T node;
+        private Node<T> prev;
+        private Node<T> next;
+
+        public Node(T node, Node<T> prev, Node<T> next) {
+            this.node = node;
+            this.prev = prev;
+            this.next = next;
+        }
     }
 }
