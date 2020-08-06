@@ -19,6 +19,5 @@ public class Test {
         //System.out.println(userStore.findById("2").getName());
         System.out.println(userStore.findById("3").getName());
         LinkedList<Integer> linkedList = new LinkedList<>();
-        linkedList.add(1);
     }
 }
