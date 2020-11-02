@@ -7,6 +7,9 @@ public class SimpleQueue<T> {
     private final SimpleStack<T> out = new SimpleStack<>();
 
     public T poll() {
+        while (in != null) {
+            out.push(in.pop());
+        }
         return null;
     }
 
