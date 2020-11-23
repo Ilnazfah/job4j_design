@@ -36,9 +36,18 @@ public class SimpleQueueTest {
         assertThat(rsl, is(2));
     }
 
-    @Test(expected = NoSuchElementException.class)
+    @Test (expected = NoSuchElementException.class)
     public void whenEmptyPoll() {
         SimpleQueue<Integer> queue = new SimpleQueue<>();
         queue.poll();
+    }
+
+    @Test
+    public void whenPoolThanPoll() {
+        SimpleQueue<Integer> queue = new SimpleQueue<>();
+        queue.push(1);
+        queue.push(2);
+        assertThat(queue.poll(), is(1));
+        assertThat(queue.poll(), is(2));
     }
 }
