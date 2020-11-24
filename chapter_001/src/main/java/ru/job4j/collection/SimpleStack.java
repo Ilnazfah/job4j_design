@@ -5,12 +5,17 @@ public class SimpleStack<T> {
     private int size = 0;
 
     public T pop() {
+        size--;
         return linked.deleteLast();
     }
 
     public void push(T value) {
         linked.add(value);
         size++;
+    }
+
+    public boolean isEmpty() {
+        return size == 0;
     }
 
     public int size() {
