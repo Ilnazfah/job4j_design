@@ -8,26 +8,14 @@ public class SimpleQueue<T> {
     private int size = 0;
 
     public T poll() {
-        T temp = out.pop();
-        for (int i = 0; i < size; i++) {
-            in.push(out.pop());
+        if (out.isEmpty()) {
+            for (int i = 0; i < size; i++) {
+                out.push(in.pop());
+            }
         }
         size--;
-        return temp;
+        return out.pop();
     }
-
-//    public T poll() {
-//        T temp;
-//        for (int i = 0; i < size; i++) {
-//            out.push(in.pop());
-//        }
-//        temp = out.pop();
-//        for (int i = 0; i < size - 1; i++) {
-//            in.push(out.pop());
-//        }
-//        size--;
-//        return temp;
-//    }
 
     public void push(T value) {
         in.push(value);
