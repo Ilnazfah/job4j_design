@@ -30,7 +30,7 @@ public class ForwardLinked<T> implements Iterable<T> {
             tempList.add(deleteLast());
         }
         head = tempList.head;
-    }
+    }///
 
     public void deleteFirst() {
         if (head == null) {
