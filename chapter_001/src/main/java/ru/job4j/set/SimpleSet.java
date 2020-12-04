@@ -3,6 +3,7 @@ package ru.job4j.set;
 import ru.job4j.collection.SimpleArray;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class SimpleSet<E> implements Iterable<E> {
     private final SimpleArray<E> simpleArray = new SimpleArray<>();
@@ -24,26 +25,25 @@ public class SimpleSet<E> implements Iterable<E> {
         return false;
     }
 
-    public static void main(String[] args) {
-        SimpleSet<String> simpleSet = new SimpleSet<>();
-        simpleSet.add("one");
-        simpleSet.add("one");
-        simpleSet.add("two");
-    }
-
     @Override
     public Iterator<E> iterator() {
-        int point = 0;
-        return new Iterator<E>() {
-            @Override
-            public boolean hasNext() {
-                return point < size;
-            }
+        return new It();
+    }
 
-            @Override
-            public E next() {
-                return null;
+    private class It implements Iterator<E> {
+        private int point = 0;
+
+        @Override
+        public boolean hasNext() {
+            return point < size;
+        }
+
+        @Override
+        public E next() {
+            if (!hasNext()) {
+                throw new NoSuchElementException();
             }
-        };
+            return simpleArray.get(point++);
+        }
     }
 }
