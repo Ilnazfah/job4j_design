@@ -11,11 +11,14 @@ import java.util.*;
 public class SimpleSetTest {
 
     @Test
-    public void whenAddThenIt() {
+    public void whenAddEqualValuesThenIt() {
         SimpleSet<String> array = new SimpleSet<>();
+        Iterator<String> it = array.iterator();
         array.add("first");
-        String rsl = array.iterator().next();
-        assertThat(rsl, is("first"));
+        array.add("first");
+        array.add("second");
+        assertThat(it.next(), is("first"));
+        assertThat(it.next(), is("second"));
     }
 
     @Test(expected = NoSuchElementException.class)
