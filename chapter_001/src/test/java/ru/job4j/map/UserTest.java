@@ -8,6 +8,7 @@ import java.util.Map;
 
 public class UserTest {
     @Test
+
     public void whenNoOverrideEqualsAndHashCode() {
         User user1 = new User("Java", 0, new GregorianCalendar(1995, 05, 23));
         User user2 = new User("Java", 0, new GregorianCalendar(1995, 05, 23));
