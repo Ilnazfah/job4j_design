@@ -31,9 +31,9 @@ public class SimpleHashMap<K, V> implements Iterable<V> {
     V get(K key) {
         V result = null;
         MapCont o = (MapCont) hashTable[getIndex(key)];
-        try {
+        if (o != null) {
             result = o.getValue();
-        } catch (NullPointerException ignored) { }
+        }
         return result;
     }
 
@@ -68,6 +68,10 @@ public class SimpleHashMap<K, V> implements Iterable<V> {
 
     public int getSize() {
         return size;
+    }
+
+    public int getTableSize() {
+        return hashTable.length;
     }
 
     class MapCont {

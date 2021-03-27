@@ -46,4 +46,27 @@ public class SimpleHashMapTest {
         }
         assertThat(i, is(simpleHashMap.getSize()));
     }
+
+    @Test
+    public void checkLength() {
+        simpleHashMap.insert(1, "1");
+        simpleHashMap.insert(2, "2");
+        simpleHashMap.insert(3, "3");
+        System.out.println(simpleHashMap.getTableSize());
+        simpleHashMap.insert(4, "4");
+        simpleHashMap.insert(5, "5");
+        simpleHashMap.insert(6, "6");
+        simpleHashMap.insert(7, "7");
+        simpleHashMap.insert(8, "8");
+        simpleHashMap.insert(9, "9");
+        simpleHashMap.insert(10, "10");
+        simpleHashMap.insert(11, "11");
+        simpleHashMap.insert(12, "12");
+        simpleHashMap.insert(13, "13");
+        simpleHashMap.insert(14, "14");
+        simpleHashMap.insert(15, "15");
+        simpleHashMap.insert(16, "16");
+        simpleHashMap.insert(17, "17");
+        System.out.println(simpleHashMap.getTableSize());
+    }
 }
