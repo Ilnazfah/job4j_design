@@ -14,11 +14,11 @@ public class SimpleHashMap<K, V> implements Iterable<V> {
         hashTable = new Object[capacity];
     }
 
-    boolean insert(K key, V value) {
+    public boolean insert(K key, V value) {
         checkTable();
         boolean res = checkHash(key);
         if (res) {
-            int hash = key.hashCode();
+            int hash = hash(key);
             Object o = new MapCont(hash, key, value);
             int index = getIndex(key);
             hashTable[index] = o;
@@ -28,7 +28,7 @@ public class SimpleHashMap<K, V> implements Iterable<V> {
         return res;
     }
 
-    V get(K key) {
+    public V get(K key) {
         V result = null;
         MapCont o = (MapCont) hashTable[getIndex(key)];
         if (o != null) {
@@ -37,7 +37,7 @@ public class SimpleHashMap<K, V> implements Iterable<V> {
         return result;
     }
 
-    boolean delete(K key) {
+    public boolean delete(K key) {
         if (!checkHash(key)) {
             int index = getIndex(key);
             hashTable[index] = null;
@@ -53,28 +53,37 @@ public class SimpleHashMap<K, V> implements Iterable<V> {
         if (size > hashTable.length - 1) {
             capacity *= 2;
             temp = new Object[capacity];
-            System.arraycopy(hashTable, 0, temp, 0, size);
+            for (int i = 0; i < hashTable.length; i++) {
+                MapCont o = (MapCont) hashTable[i];
+                int hash = hash(o.key);
+                K key = o.key;
+                V value = o.value;
+                int index = getIndex(key);
+                Object newObject = new MapCont(hash, key, value);
+                temp[index] = newObject;
+            }
             hashTable = temp;
         }
     }
 
-    int getIndex(K key) {
-        return key.hashCode() & (hashTable.length - 1);
+    public int getIndex(K key) {
+        return hash(key) & (capacity - 1);
     }
 
-    boolean checkHash(K key) {
+    private boolean checkHash(K key) {
         return hashTable[getIndex(key)] == null;
+    }
+
+    private static int hash(Object key) {
+        int h;
+        return (key == null) ? 0 : (h = key.hashCode()) ^ (h >>> 16);
     }
 
     public int getSize() {
         return size;
     }
 
-    public int getTableSize() {
-        return hashTable.length;
-    }
-
-    class MapCont {
+    private class MapCont {
         private int hash;
         private K key;
         private V value;
@@ -87,6 +96,11 @@ public class SimpleHashMap<K, V> implements Iterable<V> {
 
         public V getValue() {
             return value;
+        }
+
+        @Override
+        public String toString() {
+            return "MapCont{" + "hash=" + hash + ", key=" + key + ", value=" + value + '}';
         }
     }
 
