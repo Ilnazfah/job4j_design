@@ -3,6 +3,7 @@ package ru.job4j.map;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 
 public class SimpleHashMap<K, V> implements Iterable<Object> {
     private Node<K, V>[] hashTable;
@@ -31,9 +32,9 @@ public class SimpleHashMap<K, V> implements Iterable<Object> {
 
     public V get(K key) {
         V result = null;
-        Node<K, V> o = hashTable[getIndex(key)];
-        if (o != null) {
-            result = o.value;
+        Node<K, V> n = hashTable[getIndex(key)];
+        if (n != null) {
+            result = n.value;
         }
         return result;
     }
@@ -93,13 +94,26 @@ public class SimpleHashMap<K, V> implements Iterable<Object> {
             this.value = value;
         }
 
-        public V getValue() {
-            return value;
-        }
-
         @Override
         public String toString() {
             return "MapCont{" + "hash=" + hash + ", key=" + key + ", value=" + value + '}';
+        }
+
+        public final boolean equals(Object o) {
+            if (o == this) {
+                return true;
+            }
+            if (o instanceof Node) {
+                Node<?, ?> e = (Node<?, ?>) o;
+                return Objects.equals(key, e.key)
+                        && Objects.equals(value, e.value);
+            }
+            return false;
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(hash, key, value);
         }
     }
 
