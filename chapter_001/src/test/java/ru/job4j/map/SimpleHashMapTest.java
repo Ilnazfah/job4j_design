@@ -2,6 +2,8 @@ package ru.job4j.map;
 
 import org.junit.Test;
 
+import java.util.Iterator;
+
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 
@@ -48,12 +50,17 @@ public class SimpleHashMapTest {
 
     @Test
     public void whenLenghtResize() {
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 50; i++) {
             map.insert("Ilnaz_" + i, "Ilnaz_" + i);
             if (i == 1) {
                 System.out.println(map.get("Ilnaz_" + 1) + " : " + "Index = " + map.getIndex("Ilnaz_" + 1));
             }
         }
         System.out.println(map.get("Ilnaz_" + 1) + " : " + "Index = " + map.getIndex("Ilnaz_" + 1));
+
+        Iterator it = map.iterator();
+        while (it.hasNext()) {
+            System.out.println(it.next());
+        }
     }
 }
