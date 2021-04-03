@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 
-public class SimpleHashMap<K, V> implements Iterable<Object> {
+public class SimpleHashMap<K, V> implements Iterable<K> {
     private Node<K, V>[] hashTable;
     private int size = 0;
     private int capacity = 16;
@@ -33,14 +33,15 @@ public class SimpleHashMap<K, V> implements Iterable<Object> {
     public V get(K key) {
         V result = null;
         Node<K, V> n = hashTable[getIndex(key)];
-        if (n != null) {
+        if (n != null && n.key.equals(key)) {
             result = n.value;
         }
         return result;
     }
 
     public boolean delete(K key) {
-        if (!checkHash(key)) {
+        Node<K, V> n = hashTable[getIndex(key)];
+        if (n != null && n.key.equals(key)) {
             int index = getIndex(key);
             hashTable[index] = null;
             size--;
@@ -118,7 +119,7 @@ public class SimpleHashMap<K, V> implements Iterable<Object> {
     }
 
     @Override
-    public Iterator<Object> iterator() {
+    public Iterator<K> iterator() {
         return new SimpleHashMap.It();
     }
 
@@ -131,7 +132,7 @@ public class SimpleHashMap<K, V> implements Iterable<Object> {
             if (size == 0) {
                 return false;
             }
-            for (int i = point; i <= size; i++) {
+            for (int i = point; i < hashTable.length; i++) {
                 if (hashTable[i] != null) {
                     point = i;
                     return true;

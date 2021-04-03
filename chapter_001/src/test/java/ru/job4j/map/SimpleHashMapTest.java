@@ -57,10 +57,8 @@ public class SimpleHashMapTest {
             }
         }
         System.out.println(map.get("Ilnaz_" + 1) + " : " + "Index = " + map.getIndex("Ilnaz_" + 1));
-
-        Iterator it = map.iterator();
-        while (it.hasNext()) {
-            System.out.println(it.next());
+        for (String s : map) {
+            System.out.println(s);
         }
     }
 }
