@@ -100,16 +100,12 @@ public class SimpleHashMap<K, V> implements Iterable<K> {
             return "MapCont{" + "hash=" + hash + ", key=" + key + ", value=" + value + '}';
         }
 
-        public final boolean equals(Object o) {
-            if (o == this) {
-                return true;
-            }
-            if (o instanceof Node) {
-                Node<?, ?> e = (Node<?, ?>) o;
-                return Objects.equals(key, e.key)
-                        && Objects.equals(value, e.value);
-            }
-            return false;
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Node<?, ?> node = (Node<?, ?>) o;
+            return hash == node.hash && Objects.equals(key, node.key) && Objects.equals(value, node.value);
         }
 
         @Override
