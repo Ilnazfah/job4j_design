@@ -9,7 +9,6 @@ public class ResultFile {
             for (int[] ints : table) {
                 for (int j = 0; j < table.length; j++) {
                     out.write((ints[j] + " ").getBytes());
-
                 }
                 out.write(System.getProperty("line.separator").getBytes());
             }
