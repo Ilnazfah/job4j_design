@@ -1,16 +1,20 @@
 package ru.job4j.io;
 
+import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
+import java.io.PrintWriter;
 
 public class ResultFile {
     public static void main(String[] args) {
-        int[][] table = multiple(5);
-        try (FileOutputStream out = new FileOutputStream("result.txt")) {
+        int[][] table = multiple(10);
+        try (PrintWriter out = new PrintWriter(
+                new BufferedOutputStream(new FileOutputStream("result.txt")))) {
             for (int[] ints : table) {
                 for (int j = 0; j < table.length; j++) {
-                    out.write((ints[j] + " ").getBytes());
+                    out.write((ints[j] + " "));
                 }
-                out.write(System.getProperty("line.separator").getBytes());
+                out.write("\n");
+                //out.write(System.getProperty("line.separator"));
             }
         } catch (Exception e) {
             e.printStackTrace();
