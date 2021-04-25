@@ -18,15 +18,17 @@ public class Config {
         try (BufferedReader read = new BufferedReader(new FileReader(this.path))) {
             read.lines()
                     .filter(l -> !l.startsWith("#"))
-                    .forEach(l -> values.put(l.split("=")[0],
-                            l.split("=").length > 1 ? l.split("=")[1] : null));
+                    .forEach(l -> {
+                        String[] value = l.split("=");
+                        values.put(value[0], value.length > 1 ? value[1] : null);
+                    });
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     public String value(String key) {
-        if (values.get(key) == null) {
+        if (!values.containsKey(key) || values.get(key) == null) {
             throw new IllegalArgumentException();
         }
         return values.get(key);
