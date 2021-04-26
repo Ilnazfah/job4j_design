@@ -1,9 +1,6 @@
 package ru.job4j.io;
 
-import junit.framework.TestCase;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.BlockJUnit4ClassRunner;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
