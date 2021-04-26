@@ -2,6 +2,7 @@ package ru.job4j.io;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.StringJoiner;
@@ -20,17 +21,17 @@ public class Config {
                     .filter(l -> !l.startsWith("#"))
                     .forEach(l -> {
                         String[] value = l.split("=");
-                        values.put(value[0], value.length > 1 ? value[1] : null);
+                        if (value.length != 2) {
+                            throw new IllegalArgumentException();
+                        }
+                        values.put(value[0], value[1]);
                     });
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public String value(String key) {
-        if (!values.containsKey(key) || values.get(key) == null) {
-            throw new IllegalArgumentException();
-        }
         return values.get(key);
     }
 
