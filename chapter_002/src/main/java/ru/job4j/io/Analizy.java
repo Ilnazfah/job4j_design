@@ -12,10 +12,10 @@ public class Analizy {
         String line;
         try (BufferedReader in = new BufferedReader(new FileReader(source))) {
             while ((line = in.readLine()) != null) {
-                if (on == null && line.contains("400") || line.contains("500")) {
+                if (on == null && (line.contains("400") || line.contains("500"))) {
                     on = line.substring(4, 12);
                 }
-                if (on != null && line.contains("200") || line.contains("300")) {
+                if (on != null && (line.contains("200") || line.contains("300"))) {
                     off = line.substring(4, 12);
                     unavailable.add(on + ";" + off);
                     on = null;
