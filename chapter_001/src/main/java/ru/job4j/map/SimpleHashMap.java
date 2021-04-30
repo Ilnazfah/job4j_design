@@ -76,8 +76,8 @@ public class SimpleHashMap<K, V> implements Iterable<K> {
     }
 
     private static int hash(Object key) {
-        int h;
-        return (key == null) ? 0 : (h = key.hashCode()) ^ (h >>> 16);
+        int h = key.hashCode();
+        return (key == null) ? 0 : (h ^ (h >>> 16));
     }
 
     public int getSize() {
@@ -102,10 +102,15 @@ public class SimpleHashMap<K, V> implements Iterable<K> {
 
         @Override
         public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
+            if (this == o) {
+                return true;
+            }
+            if (o == null || getClass() != o.getClass()) {
+                return false;
+            }
             Node<?, ?> node = (Node<?, ?>) o;
-            return hash == node.hash && Objects.equals(key, node.key) && Objects.equals(value, node.value);
+            return hash == node.hash && Objects.equals(key, node.key)
+                    && Objects.equals(value, node.value);
         }
 
         @Override

@@ -1,8 +1,6 @@
 package ru.job4j.io;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ReadFile {
     public static void main(String[] args) {
