@@ -6,11 +6,11 @@ import java.util.NoSuchElementException;
 import java.util.Objects;
 
 public class SimpleHashMap<K, V> implements Iterable<K> {
+    private static final float LOAD_FACTOR = 0.75f;
     private Node<K, V>[] hashTable;
     private int size = 0;
     private int capacity = 16;
     private int modCount;
-    private final float LOAD_FACTOR = 0.75f;
 
     public SimpleHashMap() {
         hashTable = new Node[capacity];
