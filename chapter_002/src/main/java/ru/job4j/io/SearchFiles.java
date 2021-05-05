@@ -7,7 +7,6 @@ import java.nio.file.Path;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.PrimitiveIterator;
 import java.util.function.Predicate;
 
 public class SearchFiles implements FileVisitor<Path> {
