@@ -67,7 +67,7 @@ public class ConsoleChat {
         }
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         ConsoleChat cc = new ConsoleChat("./chapter_002/ccLog.txt", "./chapter_002/botAnswers.txt");
         cc.run();
     }
