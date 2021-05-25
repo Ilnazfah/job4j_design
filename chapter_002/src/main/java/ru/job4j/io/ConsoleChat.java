@@ -1,9 +1,10 @@
 package ru.job4j.io;
 
 import java.io.*;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class ConsoleChat {
     private static final String OUT = "закончить";
@@ -18,27 +19,36 @@ public class ConsoleChat {
         this.botAnswers = botAnswers;
     }
 
-    // TODO пробная версия метода. Доработать
-    public void run() throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    public void run() {
+        Scanner scan = new Scanner(System.in);
         List<String> botAnswers = readBotAnswers();
-        while (true) {
-            String user = reader.readLine();
-            int random = (int) (Math.random() * botAnswers.size());
-            log.add("User: " + user);
-            if (user.equalsIgnoreCase(OUT)) {
-                break;
+        String user = scan.nextLine();
+        log.add("User: " + user);
+        while (!user.equals(OUT)) {
+            if (user.equals(STOP)) {
+                while (!user.equals(CONTINUE)) {
+                    user = scan.nextLine();
+                    if (user.equals(OUT)) {
+                        log.add("User: " + user);
+                        writelog();
+                        return;
+                    }
+                    log.add("User: " + user);
+                }
             }
+            int random = (int) (Math.random() * botAnswers.size());
             String bot = botAnswers.get(random);
             log.add("Bot: " + bot);
             System.out.println(bot);
+            user = scan.nextLine();
+            log.add("User: " + user);
         }
         writelog();
     }
 
     private List<String> readBotAnswers() {
         List<String> res = new ArrayList<>();
-        try (BufferedReader in = new BufferedReader(new FileReader(botAnswers, Charset.forName("WINDOWS-1251")))) {
+        try (BufferedReader in = new BufferedReader(new FileReader(botAnswers, StandardCharsets.UTF_8))) {
             in.lines().forEach(res::add);
         } catch (Exception e) {
             e.printStackTrace();
