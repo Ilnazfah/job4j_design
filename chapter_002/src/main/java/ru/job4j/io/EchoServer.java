@@ -16,12 +16,12 @@ public class EchoServer {
                     while (!str.isEmpty()) {
                         System.out.println(str);
                         if (str.contains("msg=Bye")) {
+                            out.write("HTTP/1.1 200 OK\r\n\r\n".getBytes());
                             out.write("Goodbye my friend".getBytes());
                             server.close();
                         }
                         str = in.readLine();
                     }
-                    out.write("HTTP/1.1 200 OK\r\n\r\n".getBytes());
                 }
             }
         }
