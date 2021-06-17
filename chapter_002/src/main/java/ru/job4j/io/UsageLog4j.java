@@ -8,10 +8,15 @@ public class UsageLog4j {
     private static final Logger LOG = LoggerFactory.getLogger(UsageLog4j.class.getName());
 
     public static void main(String[] args) {
-        LOG.trace("trace message");
-        LOG.debug("debug message");
-        LOG.info("info message");
-        LOG.warn("warn message");
-        LOG.error("error message");
+        String name = "Ilnaz Fahriev";
+        int age = 29;
+        byte b = 7;
+        short s = 77;
+        int i = 777;
+        long l = 777L;
+        boolean bl = true;
+        char c = 55;
+        LOG.debug("User info name : {}, age : {}", name, age);
+        LOG.debug("b : {}, s : {}, i : {}, l : {}, bl : {}, c : {}", b, s, i, l, bl, c);
     }
 }
