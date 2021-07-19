@@ -2,28 +2,25 @@ package ru.job4j.serialization.json;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import ru.job4j.serialization.Contact;
 
 public class Start {
     public static void main(String[] args) {
-        Person person1 = new Person("ILnaz", 29, false, new Contact(111111, "+7-937-111-11-11"), "Has a cat", "not Married");
+        Mall mall = new Mall("TK", 500, false, new Manager("Ivan"), "Cosmetics", "Products");
         final Gson gson = new GsonBuilder().create();
-        System.out.println(gson.toJson(person1));
+        System.out.println(gson.toJson(mall));
 
-        final String personJson =
+        final String mallJson =
                 "{"
-                        + "\"name\":\"ILnaz\","
-                        + "\"age\":29,"
-                        + "\"sex\":false,"
-                        + "\"contact\":"
+                        + "\"name\":\"TK\","
+                        + "\"parkingPlaces\":500,"
+                        + "\"rtcStore\":false,"
+                        + "\"manager\":"
                         + "{"
-                        + "\"zipCode\":111111,"
-                        + "\"phone\":\"+7-937-111-11-11\""
-                        + "},"
-                        + "\"statuses\":[\"Has a cat\","
-                        + "\"not Married\"]"
+                        + "\"name\":\"Ivan\"},"
+                        + "\"goods\":[\"Cosmetics\""
+                        + ",\"Products\"]"
                         + "}";
-        final Person personMod = gson.fromJson(personJson, Person.class);
-        System.out.println(personMod);
+        final Mall mallMod = gson.fromJson(mallJson, Mall.class);
+        System.out.println(mallMod);
     }
 }
