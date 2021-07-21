@@ -1,15 +1,26 @@
 package ru.job4j.serialization.xml;
 
+import javax.xml.bind.annotation.*;
 import java.util.Arrays;
 
+@XmlRootElement(name = "car")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Car {
-    private final boolean electricCar;
-    private final int maxSpeed;
-    private final String model;
-    private final Passenger passenger;
-    private final String[] additions;
+    @XmlAttribute
+    private boolean electricCar;
+    @XmlAttribute
+    private int maxSpeed;
+    @XmlAttribute
+    private String model;
+    private Passenger passenger;
+    @XmlElementWrapper(name = "additions")
+    @XmlElement(name = "addition")
+    private String[] additions;
 
-    public Car(boolean electricCar, int maxSpeed, String model, Passenger passenger, String[] additions) {
+    public Car() {
+    }
+
+    public Car(boolean electricCar, int maxSpeed, String model, Passenger passenger, String... additions) {
         this.electricCar = electricCar;
         this.maxSpeed = maxSpeed;
         this.model = model;
