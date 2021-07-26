@@ -17,6 +17,18 @@ public class Mall {
         this.goods = goods;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public int getParkingPlaces() {
+        return parkingPlaces;
+    }
+
+    public boolean isRtcStore() {
+        return rtcStore;
+    }
+
     @Override
     public String toString() {
         return "Mall{"
