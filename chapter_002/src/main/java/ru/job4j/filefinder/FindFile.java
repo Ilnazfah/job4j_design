@@ -29,9 +29,9 @@ public class FindFile {
                 String endsWith = n.replace("*.", ".");
                 search(start, p -> p.toFile().getName().endsWith(endsWith)).forEach(s -> pathList.add(s.toString()));
             }
-            case ("name") -> {
+            case ("name") ->
                 search(start, p -> p.toFile().getName().contains(n)).forEach(s -> pathList.add(s.toString()));
-            }
+
         }
     }
 
