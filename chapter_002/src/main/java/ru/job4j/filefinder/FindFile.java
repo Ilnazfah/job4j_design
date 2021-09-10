@@ -25,13 +25,17 @@ public class FindFile {
         Path start = Paths.get(d);
         checkPath(start);
         switch (t) {
-            case ("mask") -> {
+            case ("mask"):
                 String endsWith = n.replace("*.", ".");
                 search(start, p -> p.toFile().getName().endsWith(endsWith)).forEach(s -> pathList.add(s.toString()));
-            }
-            case ("name") -> {
+                break;
+            case ("name") :
                 search(start, p -> p.toFile().getName().contains(n)).forEach(s -> pathList.add(s.toString()));
-            }
+                break;
+            default:
+                System.out.println("Тип поиска не соответствует критериям");
+                System.out.println("-t - тип поиска: mask искать по маске, name по полному совпадение имени");
+                System.exit(0);
         }
     }
 
