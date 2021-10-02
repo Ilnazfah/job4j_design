@@ -6,11 +6,14 @@ import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Objects;
 
 public class ConnectionDemo {
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
-        Config config = new Config("./chapter_003/src/main/resources/app.properties");
+        String path = Objects.requireNonNull(ConnectionDemo.class.getClassLoader().getResource("app.properties")).getPath();
+        Config config = new Config(path);
         config.load();
+
         Class.forName("org.postgresql.Driver");
         String url = config.value("url");
         String login = config.value("login");
