@@ -23,3 +23,6 @@ notifications:
 env:
   global:
     - CODECOV_TOKEN="12dfc3c9-e719-45ef-95fe-c3b9122e91da"
+
+services:
+        - postgresql
