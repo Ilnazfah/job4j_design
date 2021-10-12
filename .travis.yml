@@ -3,6 +3,12 @@ language: java
 jdk:
   - openjdk14
 
+services:
+  - postgresql
+
+before_install:
+  - psql -c 'create database idea_db;' -U postgres
+
 # используем режим обычного пользователя для сборки проекта.
 sudo: false
 
@@ -24,5 +30,4 @@ env:
   global:
     - CODECOV_TOKEN="12dfc3c9-e719-45ef-95fe-c3b9122e91da"
 
-services:
-        - postgresql
+
